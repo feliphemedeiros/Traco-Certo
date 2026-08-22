@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Traço Certo — logotipo do cliente pronto pra gravar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="topbar-brand">Traço Certo</span>
+    <button class="theme-toggle" id="themeToggle" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <span id="themeLabel">Modo Claro</span>
+    </button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">ferramenta para gravação a laser</p>
+    <h1>Do arquivo do cliente<br>ao <em>traço</em> pronto pra máquina.</h1>
+    <p class="sub">Solta o logotipo que o cliente trouxe. <br> A gente tira o fundo, isola o desenho em preto sólido e converte pra vetor (SVG ou DXF) — pronto pra abrir na gravadora.</p>
+  </header>
+
+  <div class="stage" id="stage">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+
+    <!-- estado 1: seleção -->
+    <label class="dropzone" id="dropzone" for="fileInput">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 16V4M12 4l-4 4M12 4l4 4"/>
+          <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>
+        </svg>
+      </div>
+      <p class="primary">Solte o logotipo aqui</p>
+      <p class="secondary">ou <span>clique para selecionar</span> · JPG ou PNG </p>
+    </label>
+    <input type="file" id="fileInput" accept="image/png, image/jpeg" />
+
+    <!-- estado 2: processando -->
+    <div class="developing" id="developing">
+      <div class="tray">
+        <img id="developingImg" alt="processando imagem" />
+        <div class="processing-overlay">
+          <div class="spinner"></div>
+        </div>
+      </div>
+      <p class="label" id="processingLabel">removendo fundo<span class="dots"></span></p>
+    </div>
+
+    <!-- estado 3: resultado -->
+    <div class="result" id="result">
+      <div class="tray" id="svgTray"></div>
+      <div class="controls">
+        <div class="threshold-row">
+          <label>sensibilidade do traço <span class="val" id="thresholdVal">100</span></label>
+          <input type="range" id="thresholdSlider" min="5" max="235" step="5" value="100" />
+          <p class="threshold-hint">se sobrar ruído nas bordas, aumente. se estiver cortando partes finas do desenho, diminua.</p>
+        </div>
+
+        <label class="preserve-toggle" for="preserveWhitesCheckbox">
+          <input type="checkbox" id="preserveWhitesCheckbox" />
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span class="toggle-text">preservar partes brancas internas <em>(pra brasões e logos com várias cores)</em></span>
+        </label>
+        <div class="action-row">
+          <div class="download-buttons">
+            <button class="btn-download" id="downloadSvgBtn">Baixar SVG</button>
+            <button class="btn-download outline" id="downloadDxfBtn">Baixar DXF</button>
+          </div>
+          <p class="format-hint">SVG pra maioria dos softwares de gravação. <br> DXF pra CNC e corte a laser.<br> Confira a escala real na sua máquina antes de gravar.</p>
+          <button class="btn-reset" id="resetBtn">Nova imagem</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="status-toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/imagetracerjs@1.2.6/imagetracer_v1.2.6.js"></script>
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
