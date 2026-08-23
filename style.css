@@ -514,7 +514,7 @@
 
 @media (max-width: 640px) {
   .eyebrow {
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.15em;
     gap: 6px;
   }
