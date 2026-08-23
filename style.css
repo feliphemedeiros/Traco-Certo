@@ -1,4 +1,4 @@
-/* ---------- Paleta (mesmas cores da Central de Garantias R7) ---------- */
+/* ---------- Paleta  ---------- */
   :root{
     --bg: #f0f2f5;
     --surface: #ffffff;
@@ -52,7 +52,7 @@
 
   ::selection { background: var(--accent-dim); color: var(--text); }
 
-  /* ---------- Topbar (mesma identidade da R7) ---------- */
+  /* ---------- Topbar ---------- */
 
   .topbar {
     width: 100%;
@@ -511,3 +511,16 @@
   @media (prefers-reduced-motion: reduce) {
     .spinner, .result .tray svg { animation: none !important; }
   }
+
+@media (max-width: 640px) {
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    gap: 6px;
+  }
+
+  .eyebrow::before,
+  .eyebrow::after {
+    width: 16px; 
+  }
+}
