@@ -69,6 +69,12 @@
     gap: 12px;
   }
 
+  .topbar-logo {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+
   .topbar-brand {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 600;
